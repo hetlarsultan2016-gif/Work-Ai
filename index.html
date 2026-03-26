@@ -3,34 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <title>AI Creator Pro</title>
+
 <style>
-body { font-family: Arial; text-align: center; background:#111; color:white; }
-button { padding:15px; margin:10px; width:200px; border:none; border-radius:10px; background:#00c3ff; color:white; font-size:18px; }
-textarea { width:80%; height:100px; margin-top:20px; }
+body {
+  font-family: Arial;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:white;
+  text-align:center;
+}
+
+.container {
+  margin-top:50px;
+}
+
+button {
+  padding:15px;
+  margin:10px;
+  width:220px;
+  border:none;
+  border-radius:15px;
+  background:#00c3ff;
+  font-size:18px;
+  color:white;
+  cursor:pointer;
+}
+
+textarea {
+  width:90%;
+  height:150px;
+  margin-top:20px;
+  border-radius:10px;
+  padding:10px;
+}
+
+input {
+  width:80%;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+}
 </style>
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>🚀 AI Creator Pro</h1>
 
-<button onclick="generateText()">✍️ كتابة محتوى</button>
-<button onclick="generateImage()">🎨 تصميم صورة</button>
-<button onclick="generateVideo()">🎬 إنشاء فيديو</button>
+<input id="prompt" placeholder="اكتب طلبك هنا...">
 
-<textarea id="output" placeholder="النتيجة تظهر هنا..."></textarea>
+<br>
+
+<button onclick="generateText()">✍️ كتابة محتوى</button>
+
+<textarea id="output"></textarea>
+
+</div>
 
 <script>
-function generateText(){
-document.getElementById("output").value = "اكتب هنا API لربط ChatGPT...";
-}
+async function generateText() {
+  let prompt = document.getElementById("prompt").value;
 
-function generateImage(){
-document.getElementById("output").value = "اربط Leonardo API هنا...";
-}
+  let response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: prompt }]
+    })
+  });
 
-function generateVideo(){
-document.getElementById("output").value = "اربط Pictory هنا...";
+  let data = await response.json();
+  document.getElementById("output").value = data.choices[0].message.content;
 }
 </script>
 
