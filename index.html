@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>AI Creator Pro</title>
+<style>
+body { font-family: Arial; text-align: center; background:#111; color:white; }
+button { padding:15px; margin:10px; width:200px; border:none; border-radius:10px; background:#00c3ff; color:white; font-size:18px; }
+textarea { width:80%; height:100px; margin-top:20px; }
+</style>
+</head>
+
+<body>
+
+<h1>🚀 AI Creator Pro</h1>
+
+<button onclick="generateText()">✍️ كتابة محتوى</button>
+<button onclick="generateImage()">🎨 تصميم صورة</button>
+<button onclick="generateVideo()">🎬 إنشاء فيديو</button>
+
+<textarea id="output" placeholder="النتيجة تظهر هنا..."></textarea>
+
+<script>
+function generateText(){
+document.getElementById("output").value = "اكتب هنا API لربط ChatGPT...";
+}
+
+function generateImage(){
+document.getElementById("output").value = "اربط Leonardo API هنا...";
+}
+
+function generateVideo(){
+document.getElementById("output").value = "اربط Pictory هنا...";
+}
+</script>
+
+</body>
+</html>
